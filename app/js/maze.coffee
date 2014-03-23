@@ -27,7 +27,7 @@ window.Maze =
 
   drawBall: ->
     @context.beginPath()
-    @context.arc(@x, @y, 10, 0, Math.PI * 2)
+    @context.arc(@x, @y, 5, 0, Math.PI * 2)
     @context.closePath()
     @fillWithColour("#C4C4C4")
 
