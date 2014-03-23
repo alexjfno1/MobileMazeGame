@@ -4,8 +4,14 @@ require 'sinatra/assetpack'
 register Sinatra::AssetPack
 
 assets {
-  js :maze, ['/js/*.js']
   css :maze, ['/css/*.css']
+  js :maze, [
+    '/js/mazeCanvas.js',
+    '/js/walls.js',
+    '/js/maze.js',
+    '/js/ballControl.js',
+    '/js/start.js'
+  ]
 }
 
 get '/' do
