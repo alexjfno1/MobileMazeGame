@@ -7,7 +7,7 @@ assets {
   css :maze, ['/css/*.css']
   js :maze, [
     '/js/mazeCanvas.js',
-    '/js/walls.js',
+    'js/pointSquare.js',
     '/js/maze.js',
     '/js/ballControl.js',
     '/js/start.js'

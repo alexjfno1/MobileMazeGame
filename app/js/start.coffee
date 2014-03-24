@@ -1,1 +1,3 @@
-window.onload = Maze.start()
+window.onload = ->
+  PointSquare.ramdomiseiCoordinates()
+  Maze.start()

@@ -4,17 +4,15 @@ window.Maze =
   moveXBy: 0
   moveYBy: 0
   sensitivity: 2
-  wallsForLevel: []
   context: MazeCanvas.context()
+  points: 0
 
   start: ->
     @clearCanvas()
     @setBackground()
-    @drawMaze()
-    @drawFinish()
+    PointSquare.draw()
+    @checkGainedPoint()
     @checkOutOfRange()
-    @checkForCollision()
-    @checkForWin()
     @drawBall()
     @x += @moveXBy
     @y += @moveYBy
@@ -31,25 +29,20 @@ window.Maze =
     @context.closePath()
     @fillWithColour("#C4C4C4")
 
-  drawMaze: ->
-    @context.beginPath()
-    MazeWalls.level1.forEach (wall) =>
-      @context.rect(wall.x, wall.y, wall.width, wall.height)
-    @fillWithColour "#C4C4C4"
-
   drawFinish: ->
       @context.beginPath()
       @context.rect(MazeCanvas.width() - 160, MazeCanvas.height() - 450, 30, 30)
       @fillWithColour("#4A6C74")
 
+  checkGainedPoint: ->
+    if(@x > PointSquare.x && @x < PointSquare.x + PointSquare.width && @y > PointSquare.y && @y < PointSquare.y + PointSquare.height)
+      PointSquare.ramdomiseiCoordinates()
+      @points++
+      console.log(@points)
+
   checkOutOfRange: ->
     if(@x > MazeCanvas.width() || @x <= 0 || @y > MazeCanvas.height() || @y < 0)
       @resetBall()
-
-  checkForCollision: ->
-    MazeWalls.level1.forEach (wall) =>
-      if(@x >= wall.x - 5 && @x <= (wall.x + wall.width + 5) && @y >= wall.y - 5 && @y <= (wall.y + wall.height + 5))
-        @resetBall()
 
   checkForWin: ->
       if(@x >= MazeCanvas.width() - 160 && @x <= MazeCanvas.width() - 130 && @y >= MazeCanvas.height() - 450 && @y <= MazeCanvas.height() - 420)
@@ -62,6 +55,7 @@ window.Maze =
   resetBall: ->
     @x = 15
     @y = 15
+    @points = 0
 
   fillWithColour: (colour) ->
     @context.fillStyle = colour
