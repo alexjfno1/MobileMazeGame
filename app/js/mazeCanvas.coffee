@@ -12,12 +12,6 @@ window.MazeCanvas =
 
   expand: ->
     @canvas.width = window.innerWidth
-    @adjustSize()
-
-  adjustSize: ->
-    if (@canvas.width * 1.3) > window.innerHeight
-      @canvas.width -= 10
-      @adjustSize()
-    @canvas.height = @canvas.width * 1.3
+    @canvas.height = window.innerHeight
 
 MazeCanvas.expand()
