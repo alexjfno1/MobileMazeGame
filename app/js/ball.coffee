@@ -1,7 +1,7 @@
 window.Ball =
   x: 25
   y: 25
-  radius: 10
+  radius: 5
   context: MazeCanvas.context()
 
   draw: ->

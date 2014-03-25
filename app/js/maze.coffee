@@ -4,6 +4,7 @@ window.Maze =
   sensitivity: 2
   context: MazeCanvas.context()
   points: 0
+  pointsDisplay: document.getElementById("points")
 
   start: ->
     @clearCanvas()
@@ -29,7 +30,10 @@ window.Maze =
     if (PointSquare.hit())
       PointSquare.ramdomiseiCoordinates()
       @points++
-      console.log(@points)
+      @updateScore()
+
+  updateScore: ->
+    @pointsDisplay.innerText = "Score: #{@points}"
 
   checkOutOfRange: ->
     if(Ball.x > MazeCanvas.width() || Ball.x <= 0 || Ball.y > MazeCanvas.height() || Ball.y < 0)
@@ -41,6 +45,7 @@ window.Maze =
   reset: ->
     Ball.reset()
     @points = 0
+    @updateScore()
 
   fillWithColour: (colour) ->
     @context.fillStyle = colour
