@@ -19,3 +19,5 @@ window.PointSquare =
     @context.fillStyle = "#C4C4C4"
     @context.fill()
 
+  hit: ->
+    Ball.x > @x && Ball.x < @x + @width && Ball.y > @y && Ball.y < @y + @height

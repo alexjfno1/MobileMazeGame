@@ -1,6 +1,4 @@
 window.Maze =
-  x: 25
-  y: 25
   moveXBy: 0
   moveYBy: 0
   sensitivity: 2
@@ -10,12 +8,12 @@ window.Maze =
   start: ->
     @clearCanvas()
     @setBackground()
-    PointSquare.draw()
+    Ball.draw()
     @checkGainedPoint()
     @checkOutOfRange()
-    @drawBall()
-    @x += @moveXBy
-    @y += @moveYBy
+    PointSquare.draw()
+    @move()
+    Ball.draw()
     window.requestAnimationFrame(Maze.start.bind(Maze))
 
   setBackground: ->
@@ -23,38 +21,25 @@ window.Maze =
     @context.rect(0, 0, MazeCanvas.width(), MazeCanvas.height())
     @fillWithColour "#28475c"
 
-  drawBall: ->
-    @context.beginPath()
-    @context.arc(@x, @y, 5, 0, Math.PI * 2)
-    @context.closePath()
-    @fillWithColour("#C4C4C4")
-
-  drawFinish: ->
-      @context.beginPath()
-      @context.rect(MazeCanvas.width() - 160, MazeCanvas.height() - 450, 30, 30)
-      @fillWithColour("#4A6C74")
+  move: ->
+    Ball.x += @moveXBy
+    Ball.y += @moveYBy
 
   checkGainedPoint: ->
-    if(@x > PointSquare.x && @x < PointSquare.x + PointSquare.width && @y > PointSquare.y && @y < PointSquare.y + PointSquare.height)
+    if (PointSquare.hit())
       PointSquare.ramdomiseiCoordinates()
       @points++
       console.log(@points)
 
   checkOutOfRange: ->
-    if(@x > MazeCanvas.width() || @x <= 0 || @y > MazeCanvas.height() || @y < 0)
-      @resetBall()
-
-  checkForWin: ->
-      if(@x >= MazeCanvas.width() - 160 && @x <= MazeCanvas.width() - 130 && @y >= MazeCanvas.height() - 450 && @y <= MazeCanvas.height() - 420)
-        alert("WIN!!!!!")
-        @resetBall()
+    if(Ball.x > MazeCanvas.width() || Ball.x <= 0 || Ball.y > MazeCanvas.height() || Ball.y < 0)
+      @reset()
 
   clearCanvas: ->
     @context.clearRect(0, 0, MazeCanvas.width(), MazeCanvas.height())
 
-  resetBall: ->
-    @x = 15
-    @y = 15
+  reset: ->
+    Ball.reset()
     @points = 0
 
   fillWithColour: (colour) ->
