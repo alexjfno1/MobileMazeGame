@@ -49,7 +49,7 @@ window.Maze =
     Ball.reset()
     @points = 0
     @updateScore()
-    @level = 0
+    @level = 1
 
   fillWithColour: (colour) ->
     @context.fillStyle = colour
