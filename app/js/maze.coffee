@@ -3,6 +3,7 @@ window.Maze =
   moveYBy: 0
   sensitivity: 2
   context: MazeCanvas.context()
+  level: 1
   points: 0
   pointsDisplay: document.getElementById("points")
 
@@ -12,6 +13,7 @@ window.Maze =
     Ball.draw()
     @checkGainedPoint()
     @checkOutOfRange()
+    Obstructions.draw(@level)
     PointSquare.draw()
     @move()
     Ball.draw()
@@ -31,6 +33,7 @@ window.Maze =
       PointSquare.ramdomiseiCoordinates()
       @points++
       @updateScore()
+      if (@points % 3 == 0) then @level++
 
   updateScore: ->
     @pointsDisplay.innerText = "Score: #{@points}"

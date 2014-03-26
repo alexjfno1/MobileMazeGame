@@ -8,6 +8,7 @@ assets {
   js :maze, [
     '/js/mazeCanvas.js',
     'js/ball.js',
+    '/js/obstructions.js',
     'js/pointSquare.js',
     '/js/maze.js',
     '/js/ballControl.js',
