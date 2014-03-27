@@ -20,4 +20,4 @@ window.PointSquare =
     @context.fill()
 
   hit: ->
-    Ball.x > @x && Ball.x < @x + @width && Ball.y > @y && Ball.y < @y + @height
+    Ball.hasHit(@x, @y, @width, @height)

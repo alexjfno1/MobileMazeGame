@@ -11,6 +11,9 @@ window.Ball =
     @context.fillStyle = "#C4C4C4"
     @context.fill()
 
+  hasHit: (x, y, width, height) ->
+    @x > x && @y > y && @x < (x + width) && @y < (y + height)
+
   reset: ->
     @x = 25
     @y = 25

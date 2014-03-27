@@ -19,6 +19,5 @@ window.Obstructions =
     obstructions = @levels[level]
     if (obstructions.length > 0)
       obstructions.forEach (ob) ->
-        if Ball.x > ob.x && Ball.y > ob.y && Ball.x < (ob.x + ob.width) && Ball.y < (ob.y + ob.height)
-          hit = true
+        if Ball.hasHit(ob.x, ob.y, ob.width, ob.height) then hit = true
     return hit
