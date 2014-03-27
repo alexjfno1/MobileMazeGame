@@ -36,6 +36,9 @@ window.Maze =
       @points++
       @updateScore()
       if (@points % 3 == 0) then @level++
+      if (@level > Obstructions.finalLevel)
+        alert "You Win!!"
+        @reset()
 
   checkIfLost: ->
     if (@outOfRange() || Obstructions.hit(@level)) then @reset()

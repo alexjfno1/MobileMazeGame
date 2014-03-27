@@ -1,5 +1,6 @@
 window.Obstructions =
   context: MazeCanvas.context()
+  finalLevel: 2
   levels: {
     1: [],
     2: [{x: 100, y:100, width:50, height:50}, {x: 250, y:300, width:50, height:50}]
