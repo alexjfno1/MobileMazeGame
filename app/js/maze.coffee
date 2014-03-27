@@ -10,13 +10,10 @@ window.Maze =
   start: ->
     @clearCanvas()
     @setBackground()
-    Ball.draw()
     @checkGainedPoint()
     @checkIfLost()
-    Obstructions.draw(@level)
-    PointSquare.draw()
-    @move()
-    Ball.draw()
+    @moveBall()
+    @draw()
     window.requestAnimationFrame(Maze.start.bind(Maze))
 
   setBackground: ->
@@ -24,7 +21,12 @@ window.Maze =
     @context.rect(0, 0, MazeCanvas.width(), MazeCanvas.height())
     @fillWithColour "#28475c"
 
-  move: ->
+  draw: ->
+    Obstructions.draw(@level)
+    PointSquare.draw()
+    Ball.draw()
+
+  moveBall: ->
     Ball.x += @moveXBy
     Ball.y += @moveYBy
 
