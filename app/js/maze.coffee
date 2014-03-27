@@ -12,7 +12,7 @@ window.Maze =
     @setBackground()
     Ball.draw()
     @checkGainedPoint()
-    @checkOutOfRange()
+    @checkIfLost()
     Obstructions.draw(@level)
     PointSquare.draw()
     @move()
@@ -35,12 +35,14 @@ window.Maze =
       @updateScore()
       if (@points % 3 == 0) then @level++
 
+  checkIfLost: ->
+    if (@outOfRange() || Obstructions.hit(@level)) then @reset()
+
   updateScore: ->
     @pointsDisplay.innerText = "Score: #{@points}"
 
-  checkOutOfRange: ->
-    if(Ball.x > MazeCanvas.width() || Ball.x <= 0 || Ball.y > MazeCanvas.height() || Ball.y < 0)
-      @reset()
+  outOfRange: ->
+    Ball.x > MazeCanvas.width() || Ball.x <= 0 || Ball.y > MazeCanvas.height() || Ball.y < 0
 
   clearCanvas: ->
     @context.clearRect(0, 0, MazeCanvas.width(), MazeCanvas.height())
